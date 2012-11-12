@@ -978,7 +978,7 @@ input.short_half { width: 45% !important; }
 	cursor: pointer;
 }
 
-th.icon,td.icon,th.check,td.check,th.order,td.order {
+th.icon,td.icon,th.check,td.check,th.order,td.order,th.lock,td.lock {
 	width: 18px;
 	min-width: 18px;
 	border-right: 0 !important;
@@ -1006,6 +1006,10 @@ th.first_field,td.first_field {
 
 .table th.order, .table td.order {
 	padding-right: 0 !important;
+}
+
+th.lock {
+	width: 12px;
 }
 
 thead tr th div.wrap {
@@ -1997,12 +2001,29 @@ video {
 /* browse layout
 -------------------------------------------------------------- */
 
+#browse_table tr.locked:hover td,
+#browse_table tr.locked:focus td {
+	background-color: #fff !important;
+}
+
+#browse_table tr.locked.alt:hover td,
+#browse_table tr.locked.alt:focus td {
+	background-color: #FAFAFA !important;
+}
+
 #browse_table tr:hover td,
-#browse_table tr:focus td {
+#browse_table tr:focus td,
+#browse_table tr.locked.admin:hover td,
+#browse_table tr.locked.admin:focus td {
 	background-color: #ffffe5 !important;
 }
 
-#browse_table tbody tr {
+#browse_table tbody tr.locked {
+	cursor: default;
+}
+
+#browse_table tbody tr,
+#browse_table tbody tr.admin {
 	cursor: pointer;
 }
 

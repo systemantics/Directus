@@ -1067,6 +1067,7 @@ function get_rows_info($table) {
 	
 	$results = array();
 	$results['active'] = false;
+	$results['locked'] = false;
 	$results['sort'] = false;
 	$results['fields'] = array();
 	$results['info'] = array();
@@ -1078,11 +1079,16 @@ function get_rows_info($table) {
 		// Field, Type, Collation, Null, Key, Default, Extra, Privileges, Comment
 		
 		// Do not return cms fields
-		if($row['Field'] == 'id' || $row['Field'] == 'active' || $row['Field'] == 'sort') {
+		if($row['Field'] == 'id' || $row['Field'] == 'active' || $row['Field'] == 'locked' || $row['Field'] == 'sort') {
 			
 			// Remember that this table has an active field
 			if($row['Field'] == "active"){
 				$results['active'] = true;
+			}
+			
+			// Remember that this table has a locked field
+			if($row['Field'] == "locked"){
+				$results['locked'] = true;
 			}
 			
 			// Remember that this table has an sort field
@@ -1166,6 +1172,7 @@ function get_rows($table_id, $id = false) {
 		$table_info 			= get_rows_info($table);
 		$results['info'] 		= $table_info['info'];
 		$results['active'] 		= $table_info['active'];
+		$results['locked'] 		= $table_info['locked'];
 		$results['sort'] 		= $table_info['sort'];
 		$results['num'] 		= $table_info['num'];
 		$results['fields'] 		= $table_info['fields'];

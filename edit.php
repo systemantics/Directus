@@ -31,6 +31,7 @@ if(!$allow['view'] || $table_id === false){ $_SESSION['alert'] = "permissions_vi
 if(!$allow['edit'] && $has_id){ $_SESSION['alert'] = "permissions_edit"; header("Location: ".CMS_INSTALL_PATH."tables.php"); die(); }
 if(!$allow['add'] && !$has_id){ $_SESSION['alert'] = "permissions_add"; header("Location: ".CMS_INSTALL_PATH."tables.php"); die(); }
 if(!$table_rows || ($has_id && count($table_rows['rows']) == 0)){ $_SESSION['alert'] = "permissions_exist"; header("Location: ".CMS_INSTALL_PATH."tables.php"); die(); }
+if($table_rows['locked'] && $table_rows['rows'][$id]['locked']==1 && !$cms_user['admin']){ $_SESSION['alert'] = "permissions_edit"; header("Location: ".CMS_INSTALL_PATH."tables.php"); die(); }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Check that no other users are editing this item
@@ -97,6 +98,10 @@ if(isset($_POST['saving'])) {
 	
 	if($table_rows['active'] == '1'){
 		$save_array[] = "`active` = '".$_POST['active']."'";
+	}
+	
+	if($table_rows['locked'] == '1'){
+		$save_array[] = "`locked` = '".$_POST['locked']."'";
 	}
 	
 	if($table_rows['sort'] == '1' && !$has_id && $_POST['save_and'] != 'duplicate'){
@@ -337,7 +342,7 @@ if(isset($_GET['modal'])){
 							
 							if($allow['delete'] && !in_array($table,$settings['table_single'])){
 								?>
-								<div class="item_module_box section"> 
+								<div class="item_module_box<?php if (!($table_rows['locked'] && $cms_user['admin'] && !in_array($table,$settings['table_single']))): ?> section<?php endif; ?>"> 
 									<label for="6"><input id="6" name="active" type="radio" value="1" <?PHP echo ($active == '1')?'checked="checked"':'';?>> Active</label> 
 									<label for="7"><input id="7" name="active" type="radio" value="2" <?PHP echo ($active == '2')?'checked="checked"':'';?>> Inactive</label> 
 								</div>
@@ -345,6 +350,37 @@ if(isset($_GET['modal'])){
 							} else {
 								?>
 								<input name="active" type="hidden" value="<?PHP echo $active; ?>">
+								<?PHP
+							}
+						}
+
+						// If there is a lock field show status options
+						if($table_rows['locked']){
+							
+							// Single item tables cant have items locked
+							// Regular users cannot lock items
+							if(!in_array($table,$settings['table_single']) && $cms_user['admin']){
+							
+								// Get default status of new items
+								if(!$has_id){
+									$locked = 0;
+								} else {
+									$locked = $table_rows['rows'][$id]['locked'];
+								}
+							} else {
+								$locked = 0;
+							}
+							
+							if($cms_user['admin'] && !in_array($table,$settings['table_single'])){
+								?>
+								<div class="item_module_box section"> 
+									<label for="locked_on"><input id="locked_on" name="locked" type="radio" value="1" <?PHP echo ($locked == '1')?'checked="checked"':'';?>> Locked</label> 
+									<label for="locked_off"><input id="locked_off" name="locked" type="radio" value="0" <?PHP echo ($locked == '0')?'checked="checked"':'';?>> Unlocked (editable)</label> 
+								</div>
+								<?PHP
+							} else {
+								?>
+								<input name="locked" type="hidden" value="<?PHP echo $locked; ?>">
 								<?PHP
 							}
 						}
