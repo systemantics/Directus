@@ -92,6 +92,7 @@ $install_sql['directus_users'] = "CREATE TABLE IF NOT EXISTS `directus_users` (
   `email` varchar(255) NOT NULL default '',
   `description` text NOT NULL,
   `admin` tinyint(1) NOT NULL default '0',
+  `supereditor` tinyint(1) NOT NULL default '0',
   `media` tinyint(1) NOT NULL default '1',
   `notes` tinyint(1) NOT NULL default '1',
   `editable` tinyint(1) NOT NULL default '1',

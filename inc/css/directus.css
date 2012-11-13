@@ -2013,8 +2013,8 @@ video {
 
 #browse_table tr:hover td,
 #browse_table tr:focus td,
-#browse_table tr.locked.admin:hover td,
-#browse_table tr.locked.admin:focus td {
+#browse_table tr.locked.supereditor:hover td,
+#browse_table tr.locked.supereditor:focus td {
 	background-color: #ffffe5 !important;
 }
 
@@ -2023,7 +2023,7 @@ video {
 }
 
 #browse_table tbody tr,
-#browse_table tbody tr.admin {
+#browse_table tbody tr.supereditor {
 	cursor: pointer;
 }
 

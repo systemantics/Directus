@@ -1639,6 +1639,8 @@ $(document).ready(function(){
 			$('input[priv="all"]').attr('disabled', true);
 			$('#user_settings_media').attr('checked', true);
 			$('#user_settings_media').attr('disabled', true);
+			$('#user_settings_supereditor').attr('checked', true);
+			$('#user_settings_supereditor').attr('disabled', true);
 			$('#user_settings_notes').attr('checked', true);
 			$('#user_settings_notes').attr('disabled', true);
 			$('#user_settings_editable').attr('checked', true);
@@ -1646,6 +1648,7 @@ $(document).ready(function(){
 		} else {
 			$('input[priv="all"]').attr('disabled', false);
 			$('#user_settings_media').attr('disabled', false);
+			$('#user_settings_supereditor').attr('disabled', false);
 			$('#user_settings_notes').attr('disabled', false);
 			$('#user_settings_editable').attr('disabled', false);
 		}

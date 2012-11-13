@@ -73,7 +73,7 @@ function show_browse_rows() {
 		}
 
 		?>
-		<tr id="item_<?PHP echo $row['id']; ?>" class="item <?PHP echo $status; if ($cms_user['admin']): ?> admin<?PHP endif; if ($locked): ?> locked<?PHP endif; ?>">
+		<tr id="item_<?PHP echo $row['id']; ?>" class="item <?PHP echo $status; if ($cms_user['supereditor']): ?> supereditor<?PHP endif; if ($locked): ?> locked<?PHP endif; ?>">
 			
 			<?PHP 
 			// Only show the handles if this table has an sort field
@@ -83,11 +83,11 @@ function show_browse_rows() {
 			
 			// Only show the checkboxes if this table has an active field
 			if($table_rows['active'] && $allow['delete']){ 
-				?><td class="check"><?PHP if (!$locked || $cms_user['admin']): ?><input class="status_action_check" id="<?PHP echo $row['id'];?>" type="checkbox" name="" value=""><?PHP else: ?><img src="media/site/icons/padlock.png" width="12" height="15" /><?PHP endif; ?></td><?PHP
+				?><td class="check"><?PHP if (!$locked || $cms_user['supereditor']): ?><input class="status_action_check" id="<?PHP echo $row['id'];?>" type="checkbox" name="" value=""><?PHP else: ?><img src="media/site/icons/padlock.png" width="12" height="15" /><?PHP endif; ?></td><?PHP
 			}
 			
 			// Show locked indicator if this table has a locked field
-			if($table_rows['locked'] && $cms_user['admin']){ 
+			if($table_rows['locked'] && $cms_user['supereditor']){ 
 				?><td class="lock"><?PHP if ($locked): ?><img src="media/site/icons/padlock.png" width="12" height="15" /><?PHP endif; ?></td><?PHP
 			}
 			
@@ -105,7 +105,7 @@ function show_browse_rows() {
 				if($settings['field_hidden'][$table_rows['name'].','.$field] != 'true'){
 					// Need no spaces here for proper DOM sorting
 					?>
-					<td class="<?PHP echo ($allow['edit'] && (!$locked || $cms_user['admin']))?'editable':'';?> field_<?PHP echo $field;?> <?PHP echo ($key==0)?'first_field':'';?> <?PHP echo ($browse_media)? 'thumb':'';?>" <?PHP echo ((!$table_rows['header_fields'] && $key<8) || $settings['field_primary'][$table_rows['name']] == $field || strpos($table_rows['header_fields'], ','.$field.',') !== false)?'':'style="display:none;"';?> ><div <?PHP echo ($browse_media || $field_format == 'rating')?'':'class="wrap"';?> ><?PHP 
+					<td class="<?PHP echo ($allow['edit'] && (!$locked || $cms_user['supereditor']))?'editable':'';?> field_<?PHP echo $field;?> <?PHP echo ($key==0)?'first_field':'';?> <?PHP echo ($browse_media)? 'thumb':'';?>" <?PHP echo ((!$table_rows['header_fields'] && $key<8) || $settings['field_primary'][$table_rows['name']] == $field || strpos($table_rows['header_fields'], ','.$field.',') !== false)?'':'style="display:none;"';?> ><div <?PHP echo ($browse_media || $field_format == 'rating')?'':'class="wrap"';?> ><?PHP 
 						
 						// If there is an active field, enable status badges
 						if($table_rows['active']){
@@ -350,7 +350,7 @@ require_once("inc/header.php");
 			}
 
 			// Only show the lock column if this table has a locked field
-			if($table_rows['locked'] && $cms_user['admin']){ 
+			if($table_rows['locked'] && $cms_user['supereditor']){ 
 				?><th class="lock"></th><?PHP
 			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

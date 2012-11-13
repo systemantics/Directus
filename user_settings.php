@@ -69,6 +69,7 @@ if($_POST["submit"]){
 		// To fix non submitting checkbox
 		$_POST["active"] = ($_POST["active"] == "1")? '1' : '0';
 		$_POST["admin"] = ($_POST["admin"] == "1")? '1' : '0';
+		$_POST["supereditor"] = ($_POST["supereditor"] == "1")? '1' : '0';
 		$_POST["email_messages"] = ($_POST["email_messages"] == "1")? '1' : '0';
 			
 		// Only save THESE values if the user saving is an admin
@@ -76,6 +77,7 @@ if($_POST["submit"]){
 			
 			// If admin then give admin defaults
 			if($_POST["admin"] == "1"){
+				$_POST["supereditor"] = '1';
 				$_POST["media"] = '1';
 				$_POST["notes"] = '1';
 				$_POST["editable"] = '1';
@@ -85,6 +87,7 @@ if($_POST["submit"]){
 				$_POST["reorder"] = 'all';
 				$_POST["delete"] = 'all';
 			} else {
+				$_POST["supereditor"] = ($_POST["supereditor"] == "1")? '1' : '0';
 				$_POST["media"] = ($_POST["media"] == "1")? '1' : '0';
 				$_POST["notes"] = ($_POST["notes"] == "1")? '1' : '0';
 				$_POST["editable"] = ($_POST["editable"] == "1")? '1' : '0';
@@ -99,6 +102,7 @@ if($_POST["submit"]){
 			
 			// Admin only
 			$query .= "`admin` = :admin, ";
+			$query .= "`supereditor` = :supereditor, ";
 			$query .= "`active` = :active, ";
 			$query .= "`media` = :media, ";
 			$query .= "`notes` = :notes, ";
@@ -129,6 +133,7 @@ if($_POST["submit"]){
 		// Admin options only
 		if($cms_user["admin"] == '1'){
 			$sth->bindParam(':admin', $_POST["admin"]);
+			$sth->bindParam(':supereditor', $_POST["supereditor"]);
 			$sth->bindParam(':active', $_POST["active"]);
 			$sth->bindParam(':media', $_POST["media"]);
 			$sth->bindParam(':notes', $_POST["notes"]);
@@ -265,6 +270,7 @@ require_once("inc/header.php");
 			<div class="table_actions">
 				<label for="user_settings_active"><input id="user_settings_active" <?PHP echo ($user_edit['id'] == $cms_user['id'])?'class="disable_self"':'';?> name="active" type="checkbox" value="1" <?PHP echo ($user_edit["active"] || !$user_edit['id'])? 'checked="checked"' : '';?> <?PHP echo (!$cms_user["admin"])? 'disabled="disabled"' : ''; ?> >Active User</label>
 				<label for="user_settings_admin"><input id="user_settings_admin" name="admin" type="checkbox" value="1" <?PHP echo ($user_edit["admin"])? 'checked="checked"' : '';?> <?PHP echo (!$cms_user["admin"])? 'disabled="disabled"' : ''; ?> >CMS Administrator</label>
+				<label for="user_settings_supereditor"><input id="user_settings_supereditor" name="supereditor" type="checkbox" value="1" <?PHP echo ($user_edit["supereditor"] || $user_edit["admin"] || !$user_edit['id'])? 'checked="checked"' : '';?> <?PHP echo (!$cms_user["admin"] || $user_edit["admin"])? 'disabled="disabled"' : ''; ?> >Super Editor</label>
 				<label for="user_settings_media"><input id="user_settings_media" name="media" type="checkbox" value="1" <?PHP echo ($user_edit["media"] || $user_edit["admin"] || !$user_edit['id'])? 'checked="checked"' : '';?> <?PHP echo (!$cms_user["admin"] || $user_edit["admin"])? 'disabled="disabled"' : ''; ?> >Can change media</label>
 				<label for="user_settings_notes"><input id="user_settings_notes" name="notes" type="checkbox" value="1" <?PHP echo ($user_edit["notes"] || $user_edit["admin"] || !$user_edit['id'])? 'checked="checked"' : '';?> <?PHP echo (!$cms_user["admin"] || $user_edit["admin"])? 'disabled="disabled"' : ''; ?> >Can send messages</label>
 				<label for="user_settings_editable"><input id="user_settings_editable" name="editable" type="checkbox" value="1" <?PHP echo ($user_edit["editable"] || $user_edit["admin"] || !$user_edit['id'])? 'checked="checked"' : '';?> <?PHP echo (!$cms_user["admin"] || $user_edit["admin"])? 'disabled="disabled"' : ''; ?> >Can change their settings/credentials</label>
