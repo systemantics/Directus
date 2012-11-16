@@ -1861,13 +1861,25 @@ th.order.header .ui-icon {
 /* tables layout
 -------------------------------------------------------------- */
 
-#tables_table tbody tr {
+.tables_table {
+	margin-top: 16px;
+}
+
+.tables_table tbody tr {
 	cursor: pointer;
 }
 
-#tables_table tr:hover td,
-#tables_table tr:focus td {
+.tables_table tr:hover td,
+.tables_table tr:focus td {
 	background-color: #ffffe5 !important;
+}
+
+.tables_table.toggle thead {
+	cursor: pointer;
+}
+
+.tables_table.toggle.collapsed tbody {
+	display: none;
 }
 
 /* media layout

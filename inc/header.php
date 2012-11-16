@@ -91,7 +91,7 @@
 			<div class="clearfix">
 				<ul>
 					<li><a <?PHP echo (CMS_PAGE_FILE == 'dashboard.php')?'class="current"':''; ?> href="<?PHP echo $directus_path;?>dashboard.php"><span>Dashboard</span></a></li>
-					<li><a <?PHP echo (CMS_PAGE_FILE == 'tables.php' || CMS_PAGE_FILE == 'browse.php' || CMS_PAGE_FILE == 'edit.php')?'class="current"':''; ?> href="<?PHP echo $directus_path;?>tables.php"><span>Tables<span class="badge count"><?PHP echo count($visible_tables) ?></span></span></a></li>
+					<li><a <?PHP echo (CMS_PAGE_FILE == 'tables.php' || CMS_PAGE_FILE == 'browse.php' || CMS_PAGE_FILE == 'edit.php')?'class="current"':''; ?> href="<?PHP echo $directus_path;?>tables.php"><span>Tables<span class="badge count"><?PHP echo $visible_tables_count ?></span></span></a></li>
 					<li><a <?PHP echo (CMS_PAGE_FILE == 'media.php')?'class="current"':''; ?> href="<?PHP echo $directus_path;?>media.php"><span>Media<span class="badge count"><?PHP echo $media_total;?></span></span></a></li>
 					<li><a <?PHP echo (CMS_PAGE_FILE == 'users.php' || CMS_PAGE_FILE == 'user_settings.php' )?'class="current"':''; ?> href="<?PHP echo $directus_path;?>users.php"><span>Users<span class="badge count"><?PHP echo $cms_active_user_count;?></span></span></a></li>
 					<?PHP if($cms_user['admin']){ ?><li><a <?PHP echo (CMS_PAGE_FILE == 'settings.php')?'class="current"':''; ?> href="<?PHP echo $directus_path;?>settings.php"><span>Settings</span></a></li><?PHP } ?>

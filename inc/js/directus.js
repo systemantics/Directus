@@ -207,6 +207,35 @@ $(document).ready(function(){
 		
 	});
 	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Toggle table groups on table overview by clicking header
+	
+	$(".tables_table.toggle.closed").addClass("collapsed");
+
+	$(".tables_table.toggle thead tr").live('click', function() {
+		var container = $(this).closest("table");
+		if(container.hasClass("closed")) {
+			container.removeClass("closed");
+			container.find(".item_module_toggle").removeClass("ui-icon-carat-1-n");
+			container.find(".item_module_toggle").addClass("ui-icon-carat-1-s");
+			container.removeClass("collapsed");
+		} else {
+			container.addClass("closed");
+			container.find(".item_module_toggle").removeClass("ui-icon-carat-1-s");
+			container.find(".item_module_toggle").addClass("ui-icon-carat-1-n");
+			container.addClass("collapsed");
+		}
+		
+		// Now update the session so it stays open
+		var settings_open_tables = ",";
+		$(".tables_table.toggle").each(function(index) {
+			if(!$(this).hasClass("closed")){
+				settings_open_tables = settings_open_tables + parseInt($(this).attr('id').substr(6)) + ",";
+			}
+		});
+		set_session('settings_open_table_group', settings_open_tables);
+	});
+	
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Numeric only control handler
