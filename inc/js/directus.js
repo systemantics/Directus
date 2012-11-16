@@ -179,19 +179,22 @@ $(document).ready(function(){
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Toggle modules by clicking header
 	
-	$(".item_module.closed .item_module_title").addClass("collapsed");
+	$(".item_module.closed .item_module_title")
+		.addClass("collapsed")
+		.find(".item_module_toggle")
+			.addClass("ui-icon-carat-1-s");
 	
 	$(".item_module.toggle .item_module_title").live('click', function() {
 		if($(this).parent().hasClass("closed")) {
 			$(this).parent().removeClass("closed");
-			$(this).find(".item_module_toggle").removeClass("ui-icon-carat-1-n");
-			$(this).find(".item_module_toggle").addClass("ui-icon-carat-1-s");
+			$(this).find(".item_module_toggle").removeClass("ui-icon-carat-1-s");
+			$(this).find(".item_module_toggle").addClass("ui-icon-carat-1-n");
 			$(this).removeClass("collapsed");
 			$(this).siblings(".item_module_box").show();
 		} else {
 			$(this).parent().addClass("closed");
-			$(this).find(".item_module_toggle").removeClass("ui-icon-carat-1-s");
-			$(this).find(".item_module_toggle").addClass("ui-icon-carat-1-n");
+			$(this).find(".item_module_toggle").removeClass("ui-icon-carat-1-n");
+			$(this).find(".item_module_toggle").addClass("ui-icon-carat-1-s");
 			$(this).addClass("collapsed");
 			$(this).siblings(".item_module_box").hide();
 		}
@@ -210,19 +213,22 @@ $(document).ready(function(){
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Toggle table groups on table overview by clicking header
 	
-	$(".tables_table.toggle.closed").addClass("collapsed");
+	$(".tables_table.toggle.closed")
+		.addClass("collapsed")
+		.find(".item_module_toggle")
+			.addClass("ui-icon-carat-1-s");
 
 	$(".tables_table.toggle thead tr").live('click', function() {
 		var container = $(this).closest("table");
 		if(container.hasClass("closed")) {
 			container.removeClass("closed");
-			container.find(".item_module_toggle").removeClass("ui-icon-carat-1-n");
-			container.find(".item_module_toggle").addClass("ui-icon-carat-1-s");
+			container.find(".item_module_toggle").removeClass("ui-icon-carat-1-s");
+			container.find(".item_module_toggle").addClass("ui-icon-carat-1-n");
 			container.removeClass("collapsed");
 		} else {
 			container.addClass("closed");
-			container.find(".item_module_toggle").removeClass("ui-icon-carat-1-s");
-			container.find(".item_module_toggle").addClass("ui-icon-carat-1-n");
+			container.find(".item_module_toggle").removeClass("ui-icon-carat-1-n");
+			container.find(".item_module_toggle").addClass("ui-icon-carat-1-s");
 			container.addClass("collapsed");
 		}
 		

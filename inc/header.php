@@ -14,7 +14,7 @@
 	
 	<script type="text/javascript" src="<?PHP echo $directus_path;?>inc/js/jquery.js"></script>
 	<script type="text/javascript" src="<?PHP echo $directus_path;?>inc/js/jquery-ui.js"></script>
-	<script type="text/javascript" src="<?PHP echo $directus_path;?>inc/js/directus.js<?PHP echo ($cms_debug)? '?'.time():'?1'; ?>" id="base_path" base_path="<?PHP echo $directus_path;?>"></script>
+	<script type="text/javascript" src="<?PHP echo $directus_path;?>inc/js/directus.js<?PHP echo ($cms_debug)? '?'.time():'?2'; ?>" id="base_path" base_path="<?PHP echo $directus_path;?>"></script>
 </head>
 
 <body>
