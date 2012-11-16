@@ -1,2 +1,4 @@
 Directus Log
 //////////////////////////////////////////////////////////////////////////////
+2012-11-12 09:13:01 - INSTALL: SQLSTATE[28000] [1045] Access denied for user 'lutz'@'localhost' (using password: NO)
+2012-11-12 09:13:56 - INSTALL: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)

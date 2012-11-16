@@ -10,11 +10,11 @@
 	<link rel="shortcut icon" href="<?PHP echo $directus_path;?>media/site/favicon.ico">
 	
 	<link rel="stylesheet" href="<?PHP echo $directus_path;?>inc/css/directus.css<?PHP echo ($cms_debug)? '?'.time():''; ?>" type="text/css" media="screen" title="" charset="utf-8">
-	<link rel="stylesheet" href="<?PHP echo $directus_path;?>inc/css/cms_colors/<?PHP echo $settings['cms']['cms_color'];?>.css<?PHP echo ($cms_debug)? '?'.time():''; ?>" type="text/css" media="screen" title="" charset="utf-8">
+	<link rel="stylesheet" href="<?PHP echo $directus_path;?>inc/css/cms_colors/<?PHP echo $settings['cms']['cms_color'];?>.css<?PHP echo ($cms_debug)? '?'.time():'?1'; ?>" type="text/css" media="screen" title="" charset="utf-8">
 	
 	<script type="text/javascript" src="<?PHP echo $directus_path;?>inc/js/jquery.js"></script>
 	<script type="text/javascript" src="<?PHP echo $directus_path;?>inc/js/jquery-ui.js"></script>
-	<script type="text/javascript" src="<?PHP echo $directus_path;?>inc/js/directus.js<?PHP echo ($cms_debug)? '?'.time():''; ?>" id="base_path" base_path="<?PHP echo $directus_path;?>"></script>
+	<script type="text/javascript" src="<?PHP echo $directus_path;?>inc/js/directus.js<?PHP echo ($cms_debug)? '?'.time():'?1'; ?>" id="base_path" base_path="<?PHP echo $directus_path;?>"></script>
 </head>
 
 <body>

@@ -139,7 +139,6 @@ foreach($dbh->query("SELECT * FROM `directus_settings` WHERE `active` = '1' ORDE
 
 
 $settings['table_group'] 			= ($settings['table_group'])? 					$settings['table_group']: 					array();					// Array of table group captions
-$settings['table_group_index'] 		= ($settings['table_group_index'])? 			$settings['table_group_index']: 			array();					// Array of table group indices
 $settings['table_hidden'] 			= ($settings['table_hidden'])? 					$settings['table_hidden']: 					array();					// Array of hidden tables
 $settings['table_single'] 			= ($settings['table_single'])? 					$settings['table_single']: 					array();					// Array of tables with only one item
 $settings['table_inactive_default'] = ($settings['table_inactive_default'])? 		$settings['table_inactive_default']: 		array();					// Array of tables with only one item				
@@ -270,7 +269,7 @@ $visible_tables = array();
 $visible_tables_count = 0;
 foreach($tables as $table){			
 	if((strpos($cms_user["view"],',' . $table . ',') !== false || $cms_user["view"] == 'all' || $cms_user["admin"] == '1') && !in_array($table,$settings['table_hidden'])){
-		$visible_tables[sprintf('%03d_%s', isset($settings['table_group_index'][$table]) ? $settings['table_group_index'][$table] : 0, isset($settings['table_group'][$table]) ? $settings['table_group'][$table] : '')][] = $table;
+		$visible_tables[isset($settings['table_group'][$table]) ? $settings['table_group'][$table] : ''][] = $table;
 	}
 	$visible_tables_count = $visible_tables_count + 1;
 }

@@ -192,7 +192,6 @@ require_once("inc/header.php");
 					<div class="item_module_box">
 						<div class="table_options">
 							<label class="primary" style="margin-right:0.5em;">Group caption: <input class="small" type="text" name="table_group[<?PHP echo $table;?>]" value="<?PHP echo htmlspecialchars($settings['table_group'][$table]); ?>" /></label>
-							<label class="primary" style="margin-right:0.5em;">Group index: <input class="small force_numeric" maxlength="3" size="3" type="text" name="table_group_index[<?PHP echo $table;?>]" value="<?PHP echo intval($settings['table_group_index'][$table]); ?>" /></label>
 							<label class="normal" style="margin-right:0.5em;"><input type="checkbox" name="table_hidden[]" value="<?PHP echo $table;?>" <?PHP echo (in_array($table, $settings['table_hidden']))? 'checked="checked"' : ''; ?> >Hidden</label>
 							<label class="normal" style="margin-right:0.5em;"><input type="checkbox" name="table_single[]" value="<?PHP echo $table;?>" <?PHP echo (in_array($table, $settings['table_single']))? 'checked="checked"' : ''; ?> >Single</label>
 							<label class="normal" style="margin-right:0.5em;"><input type="checkbox" name="table_inactive_default[]" value="<?PHP echo $table;?>" <?PHP echo (in_array($table, $settings['table_inactive_default']))? 'checked="checked"' : ''; ?> >Inactive by default</label>

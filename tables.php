@@ -21,11 +21,11 @@ require_once("inc/header.php");
 		//////////////////////////////////////////////////////////////////////////////
 		// Loop through all tables and display them
 		
-		foreach($visible_tables as $group => $tables){
-			list($groupIndex, $groupCaption) = explode('_', $group);
+		$groupIndex = 0;
+		foreach($visible_tables as $groupCaption => $tables){
 ?>
 
-<table id="group_<?PHP echo $groupIndex; ?>" class="tables_table table<?PHP if ($visible_tables_groups_count>1): ?> toggle<?PHP if (!in_array(intval($groupIndex), explode(',', $_SESSION['settings_open_table_group']))): ?> closed<?PHP endif; endif; ?>" cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<table id="group_<?PHP echo $groupIndex; ?>" class="tables_table table<?PHP if ($visible_tables_groups_count>1): ?> toggle<?PHP if (!in_array($groupIndex, explode(',', $_SESSION['settings_open_table_group']))): ?> closed<?PHP endif; endif; ?>" cellpadding="0" cellspacing="0" border="0" style="width:100%">
 	<thead>
 		<tr>
 			<th class="icon"><?PHP if ($visible_tables_groups_count>1): ?><span class="item_module_toggle ui-icon down"></span><?PHP endif; ?></th>
@@ -57,6 +57,7 @@ require_once("inc/header.php");
 </table>
 
 <?PHP
+			$groupIndex = $groupIndex + 1;
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////
