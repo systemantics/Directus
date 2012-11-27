@@ -1725,7 +1725,7 @@ function get_field_value($table, $field, $value, $format = 'text') {
 	} elseif($field_format == 'password' || $field_format == 'password_confirm'){
 		$value = str_repeat("*", strlen($value));
 	} else {
-		// $value
+		$value = strip_tags($value);
 	}
 	
 	return $value;

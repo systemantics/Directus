@@ -186,7 +186,7 @@ if(isset($_GET['modal'])){
 						//$safe_value = str_replace('"', "&#34;", $ordered_value);
 						unset($option_array);
 						foreach($option_fields as $temp){
-							$option_array[] = $table_rows['rows'][$id][$temp];
+							$option_array[] = get_field_value($field_option['relational']["add_from_table"], $temp, $table_rows['rows'][$id][$temp], 'code');
 						}
 
 						?>
